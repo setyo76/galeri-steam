@@ -41,7 +41,7 @@ export default async function Page() {
           <Image src="/logo-oel.png" alt="Logo Ora et Labora" width={480} height={0} className="logo" priority style={{ height: "auto" }} />
           <div>
             <h1>{TITLE}</h1>
-            <p>Kegembiraan Adik-adik SD belajar STEAM bersama Kakak-kakak SMP yang keren-keren.</p>
+            <p>Siswa SD belajar STEAM dengan Stickem, didampingi kakak-kakak SMP yang menjadi mentor mereka.</p>
           </div>
         </div>
       </header>
@@ -66,14 +66,25 @@ export default async function Page() {
             <Note text="Belum ada video di folder." />
           ) : (
             <div className="grid">
-              {videos.files.map((v) => (
-                <figure key={v.id}>
-                  <div className="frame">
-                    <iframe src={videoUrl(v.id)} title={cleanName(v.name)} loading="lazy" allow="fullscreen" allowFullScreen />
-                  </div>
-                  <figcaption>{cleanName(v.name)}</figcaption>
-                </figure>
-              ))}
+              {videos.files.map((v) => {
+                const w = v.videoMediaMetadata?.width;
+                const h = v.videoMediaMetadata?.height;
+                const portrait = w && h && h > w;
+                return (
+                  <figure key={v.id}>
+                    <div
+                      className={portrait ? "frame portrait" : "frame"}
+                      style={w && h ? { aspectRatio: `${w} / ${h}` } : undefined}
+                    >
+                      <iframe src={videoUrl(v.id)} title={cleanName(v.name)} loading="lazy" allow="fullscreen" allowFullScreen />
+                    </div>
+                    <figcaption>
+                      <span>{cleanName(v.name)}</span>
+                      <a className="open" href={`https://drive.google.com/file/d/${v.id}/view`} target="_blank" rel="noopener noreferrer">Buka di Drive</a>
+                    </figcaption>
+                  </figure>
+                );
+              })}
             </div>
           )}
         </section>
@@ -85,3 +96,4 @@ export default async function Page() {
     </>
   );
 }
+
