@@ -70,3 +70,15 @@ footer div { max-width: 960px; margin: 0 auto; padding: 18px 16px; font-size: .9
 figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .open { font-weight: 400; font-size: .9rem; color: var(--blue); white-space: nowrap; }
 @media (prefers-color-scheme: dark) { .open { color: #8fb8ee; } }
+
+/* Navigasi album dan bagian album */
+.chips { max-width: 960px; margin: 0 auto; padding: 18px 16px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips a { padding: 6px 14px; border-radius: 999px; border: 1px solid #9db4d3; background: var(--card); color: var(--ink); text-decoration: none; font-weight: 600; font-size: .92rem; }
+.chips a:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+.album { margin-top: 36px; scroll-margin-top: 16px; }
+.album:first-child { margin-top: 0; }
+.h.blue { border-color: var(--blue); }
+.count { margin: -6px 0 12px 18px; color: var(--muted); font-size: .9rem; }
+.grid.vids { margin-top: 22px; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
